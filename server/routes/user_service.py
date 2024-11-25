@@ -45,11 +45,10 @@ class UserService(users_pb2_grpc.UsersServicer):
         )
 
     def GetUsers(self, request, context):
-        # Obtener el token de los metadatos
-        metadata = dict(context.invocation_metadata())
-        token = metadata.get('authorization', None)
+        # Obtener el token desde el objeto de solicitud
+        token = request.token
 
-        if token is None:
+        if not token:
             context.abort(grpc.StatusCode.UNAUTHENTICATED, "Token de autenticación no proporcionado.")
 
         # Validar el token
