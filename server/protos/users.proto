@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package users;
+
+service Users {
+    rpc Register(RegisterRequest) returns (RegisterResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
+    rpc GetUserById(GetUserByIdRequest) returns (GetUserByIdResponse);
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+message User {
+    string id = 1;
+    string name = 2;        // Nombre del usuario
+    string email = 3;       // Correo electrónico del usuario
+    string role = 4;        // Rol del usuario (por ejemplo, "admin", "user")
+    string createdAt = 5;   // Fecha de creación
+}
+
+message RegisterRequest {
+    string name = 1;        // Nombre del usuario
+    string email = 2;       // Correo electrónico del usuario
+    string password = 3;    // Contraseña del usuario
+    string role = 4;        // Rol del usuario (opcional, podría ser "user" por defecto)
+}
+
+message RegisterResponse {
+    User user = 1;          // Usuario registrado
+    string message = 2;     // Mensaje de éxito o información adicional
+}
+
+message LoginRequest {
+    string email = 1;       // Correo electrónico para login
+    string password = 2;    // Contraseña para login
+}
+
+message LoginResponse {
+    string token = 1;       // Token de autenticación
+}
+
+message GetUsersRequest {
+    string token = 1;       // Token de autenticación 
+}
+message GetUsersResponse {
+    repeated User users = 1;
+}
+
+message GetUserByIdRequest {
+    string id = 1;          // ID del usuario a buscar
+}
+
+message GetUserByIdResponse {
+    User user = 1;
+}
+
+message UpdateUserRequest {
+    User user = 1;          // Datos actualizados del usuario
+}
+
+message UpdateUserResponse {
+    User user = 1;          // Usuario actualizado
+}
+
+message DeleteUserRequest {
+    string id = 1;          // ID del usuario a eliminar
+}
+
+message DeleteUserResponse {
+    string id = 1;          // ID del usuario eliminado
+}
