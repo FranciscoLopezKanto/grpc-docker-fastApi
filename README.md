@@ -31,3 +31,6 @@ python app.py
 docker compose up
 
 levantara la base mongo y backend , el client se debe ejecutar aparte para probar
+
+# grpc tools
+python -m grpc_tools.protoc -I=protos --python_out=. --grpc_python_out=. protos/users.proto

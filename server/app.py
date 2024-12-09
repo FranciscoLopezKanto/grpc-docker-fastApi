@@ -3,6 +3,7 @@ from routes.user_service import UserService
 import grpc
 from concurrent import futures
 import users_pb2_grpc
+import users_pb2
 
 # Configurar el logging para que solo se vean los logs de tu aplicación
 logging.basicConfig(level=logging.INFO)  # Solo logs INFO y superiores

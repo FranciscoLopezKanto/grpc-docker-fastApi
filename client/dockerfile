@@ -2,7 +2,8 @@
 FROM python:3.9-slim
 
 # Instala las dependencias necesarias
-RUN pip install --no-cache-dir grpcio grpcio-tools pymongo
+RUN pip install requeriments.txt --no-cache-dir
+RUN pip install pyjwt --no-cache-dir
 
 # Copia el código del servidor al contenedor
 WORKDIR /app
